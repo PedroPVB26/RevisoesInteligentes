@@ -27,8 +27,7 @@ class MainApp(MDApp):
         self.ScreenManager.add_widget(HomePage(name="sobrepalavra"))
         self.dialogo = ""
 
-
-        self.palavras = palavras_traduzidas = [
+        self.palavras = [
             ("Das Mädchen", "A menina"),
             ("Die Frau", "A mulher"),
             ("Der Mann", "O homem"),
@@ -76,8 +75,11 @@ class MainApp(MDApp):
     def enviar_email_recuperacao(self, email, *args):
         print(f"Enviando e-mail de recuperação para {email}")
         self.dialogo.dismiss()
-
         self.mudar_tela("codigorecuperacao", "left")
+
+    def verificar_codigo_recuperacao(self, codigo_digitado):
+        print(f"Codigo digitado: {codigo_digitado}")
+
 
     def fazer_login(self, campo_email, campo_senha):
         usuarios = [("pedrovbittencourt@gmail.com", "ppvb26102004ooet"), ("pedrovbittencourt@hotmail.com", "pa1234")]
