@@ -29,6 +29,9 @@
                 mode: "outlined"
                 multiline : False
                 radius: 20
+                on_text: app.apenas_digito(self, self.text)
+                halign: "center"
+                font_size: "30sp"
 
                 MDTextFieldHintText:
                     text: "Código de Recuperação"
@@ -54,7 +57,8 @@
                 pos_hint: {"top": 1, "center_x": 0.5}
                 theme_width: "Custom"
                 height: "56dp"
-                size_hint_x: .6
+                width: "200dp"
+
                 on_release: app.verificar_codigo_recuperacao(campo_codigo_recuperacao.text)
 
                 MDButtonText:

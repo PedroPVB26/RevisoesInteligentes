@@ -80,6 +80,19 @@ class MainApp(MDApp):
     def verificar_codigo_recuperacao(self, codigo_digitado):
         print(f"Codigo digitado: {codigo_digitado}")
 
+    def apenas_digito(self, campo_texto, texto):
+        if len(texto) > 5:
+            campo_texto.text = texto[:len(texto) - 1]
+            return 0
+
+
+        for caracter in texto:
+            if caracter.isdigit()==False:
+                campo_texto.text = texto[:len(texto) - 1]
+                break
+
+
+
 
     def fazer_login(self, campo_email, campo_senha):
         usuarios = [("pedrovbittencourt@gmail.com", "ppvb26102004ooet"), ("pedrovbittencourt@hotmail.com", "pa1234")]
