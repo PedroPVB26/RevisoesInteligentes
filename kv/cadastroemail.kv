@@ -1,8 +1,8 @@
-<Login>:
-    name: "loginpage"
+<CadastroEmail>:
+    name: "cadastroemail"
     MDBoxLayout:
         adaptive_height: True
-        spacing: "10dp"
+        spacing: "20dp"
         orientation: "vertical"
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
         size_hint: .9, .9
@@ -18,6 +18,17 @@
             halign: "center"
             radius: 15
 
+        MDLabel:
+            theme_label_color: "Custom"
+            #md_bg_color: [0.28, 0.28, 0.28, 0.1]
+            size_hint: 1, 0.4
+            font_style: "Body"
+            role: "small"
+            text: "Pedimos que você faça um cadastro para que suas palavras fiquem salvas independentemente do dispositivo, permitindo que você possa revisá-las de qualquer outro aparelho caso o atual apresente defeito."
+            text_color: [0.5, 0.5, 0.5, 1]
+            halign: "justify"
+            radius: 15
+
         MDBoxLayout:
             #md_bg_color: [0.28, 0.35, 0.9, 0.1]
             adaptive_height: True
@@ -30,7 +41,8 @@
                 mode: "outlined"
                 multiline : False
                 radius: 20
-                text: "pedrovbittencourt@gmail.com"
+                error: False
+                on_text: app.verificar_email(campo_email)
 
                 MDTextFieldTrailingIcon:
                     icon: "account"
@@ -38,44 +50,10 @@
                 MDTextFieldHintText:
                     text: "E-MAIL"
 
-
-            MDTextField:
-                id: campo_senha
-                halign: "left"
-                mode: "outlined"
-                multiline : False
-                radius: 20
-                password: False if box_senha.active else True
-                password_mask: "•"
-
-                MDTextFieldLeadingIcon:
-                    icon: "eye-off-outline" if campo_senha.password else "eye-outline"
-
-                MDTextFieldTrailingIcon:
-                    icon: "key-outline"
-
-                MDTextFieldHintText:
-                    text: "SENHA"
-
                 MDTextFieldHelperText:
-                    text: ""
+                    text: "Insira um e-mail válido"
                     mode: "on_error"
 
-            MDBoxLayout:
-                #md_bg_color: [0.98, 0.75, 0.49, 0.1]
-                adaptive_height: True
-                orientation: "horizontal"
-                spacing: "10dp"
-
-                MDCheckbox:
-                    pos_hint: {"center_y": 0.5, "center_x": 0.5}
-                    id: box_senha
-
-                MDLabel:
-                    halign: "left"
-                    text: "Esconder senha" if box_senha.active else "Mostrar senha"
-                    font_style: "Body"
-                    role: "small"
 
 
         MDBoxLayout:
@@ -93,19 +71,13 @@
                 theme_width: "Custom"
                 height: "56dp"
                 width: "200dp"
-                on_release: app.fazer_login(campo_email, campo_senha)
+                on_release: app.cadastrar_email(campo_email)
+
 
                 MDButtonText:
                     pos_hint: {"center_x": .5, "center_y": .5}
-                    text: "LOGIN"
+                    text: "CONTINUAR"
                     font_style: "Title"
-
-            MDButton:
-                pos_hint: {"top": 1, "center_x": 0.5}
-                style: "text"
-                on_release: app.mudar_tela("cadastroemail", "left")
-                MDButtonText:
-                    text: "Fazer Cadastro"
 
 
         MDLabel:
@@ -114,4 +86,3 @@
             valign: "bottom"
             #md_bg_color: [0.68, 0.55, 0.69, 0.1]
             radius: 15
-

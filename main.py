@@ -22,10 +22,12 @@ class MainApp(MDApp):
 
         self.ScreenManager = self.root
         self.ScreenManager.add_widget(Login(name="loginpage"))
-        self.ScreenManager.add_widget(Cadastro(name="cadastropage"))
+        self.ScreenManager.add_widget(CadastroEmail(name="cadastroemail"))
+        self.ScreenManager.add_widget(CodigoConfirmacao(name="codigoconfirmacao"))
+        self.ScreenManager.add_widget(CadastroSenha(name="cadastrosenha"))
         self.ScreenManager.add_widget(HomePage(name="homepage"))
-        self.ScreenManager.add_widget(HomePage(name="sobrepalavra"))
         self.dialogo = ""
+        self.codigo_rec_conf = 123123
 
         self.palavras = [
             ("Das Mädchen", "A menina"),
@@ -67,6 +69,7 @@ class MainApp(MDApp):
         print(f"Exibindo informações sobre a palavra: {palavra}")
         self.mudar_tela("loginpage", "left")
 
+
     def mudar_tela(self, id_tela, direcao_transicao):
         self.ScreenManager.transition = SlideTransition(direction=direcao_transicao)
         self.ScreenManager.current = id_tela
@@ -77,14 +80,25 @@ class MainApp(MDApp):
         self.dialogo.dismiss()
         self.mudar_tela("codigorecuperacao", "left")
 
+    def enviar_email_confirmacao(self, email, *args):
+        print(f"enviando e-mail de confirmação para {email}")
+
+
     def verificar_codigo_recuperacao(self, codigo_digitado):
         print(f"Codigo digitado: {codigo_digitado}")
 
+    def verificar_codigo_confirmacao(self, codigo_digitado):
+        if int(codigo_digitado) == self.codigo_rec_conf:
+            self.mudar_tela("cadastrosenha", "left")
+        else:
+            print("Código incorreto")
+
+
+    # Usado para que o usuário consiga digitar apenas números da página do código de recuperação
     def apenas_digito(self, campo_texto, texto):
-        if len(texto) > 5:
+        if len(texto) > 6:
             campo_texto.text = texto[:len(texto) - 1]
             return 0
-
 
         for caracter in texto:
             if caracter.isdigit()==False:
@@ -92,7 +106,34 @@ class MainApp(MDApp):
                 break
 
 
+    # Verifica se o usuário está ou não preenchendo um e-mail válido
+    def verificar_email(self, campo_email):
+        if campo_email.is_email_valid(campo_email.text) == True:
+            campo_email.error = True
+            return False
+        else:
+            campo_email.error = False
+            return True
 
+    def verificar_senha(self, campo_senha):
+        print(campo_senha.text)
+
+    def cadastrar_email(self, campo_email):
+        # Se o usuário digitou o e-mail corretamente (e se ele digitou um e-mail)
+        if self.verificar_email(campo_email):
+            # Verificar se o e-mail já existe
+            # Se o e-mail não existir
+            print("Pode fazer cadastro do e-mail")
+            self.mudar_tela("codigoconfirmacao", "left")
+
+
+        # Caso o e-mail não seja válido
+        else:
+            print("Não pode fazer cadastro do e-mail")
+
+    def cadastrar_senha(self, campo_senha):
+        print("Senha cadastrada com sucesso")
+        self.mudar_tela("homepage", "left")
 
     def fazer_login(self, campo_email, campo_senha):
         usuarios = [("pedrovbittencourt@gmail.com", "ppvb26102004ooet"), ("pedrovbittencourt@hotmail.com", "pa1234")]

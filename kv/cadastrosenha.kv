@@ -1,5 +1,5 @@
-<Login>:
-    name: "loginpage"
+<CadastroSenha>:
+    name: "cadastrosenha"
     MDBoxLayout:
         adaptive_height: True
         spacing: "10dp"
@@ -18,26 +18,22 @@
             halign: "center"
             radius: 15
 
+        MDLabel:
+            theme_label_color: "Custom"
+            #md_bg_color: [0.28, 0.28, 0.28, 0.1]
+            size_hint: 1, 0.4
+            font_style: "Body"
+            role: "small"
+            text: "Pedimos que você faça um cadastro para que suas palavras fiquem salvas independentemente do dispositivo, permitindo que você possa revisá-las de qualquer outro aparelho caso o atual apresente defeito."
+            text_color: [0.5, 0.5, 0.5, 1]
+            halign: "justify"
+            radius: 15
+
         MDBoxLayout:
             #md_bg_color: [0.28, 0.35, 0.9, 0.1]
             adaptive_height: True
             orientation: "vertical"
             spacing: "10dp"
-
-            MDTextField:
-                id: campo_email
-                halign: "left"
-                mode: "outlined"
-                multiline : False
-                radius: 20
-                text: "pedrovbittencourt@gmail.com"
-
-                MDTextFieldTrailingIcon:
-                    icon: "account"
-
-                MDTextFieldHintText:
-                    text: "E-MAIL"
-
 
             MDTextField:
                 id: campo_senha
@@ -47,6 +43,7 @@
                 radius: 20
                 password: False if box_senha.active else True
                 password_mask: "•"
+                on_text: app.verificar_senha(campo_senha)
 
                 MDTextFieldLeadingIcon:
                     icon: "eye-off-outline" if campo_senha.password else "eye-outline"
@@ -93,19 +90,12 @@
                 theme_width: "Custom"
                 height: "56dp"
                 width: "200dp"
-                on_release: app.fazer_login(campo_email, campo_senha)
+                on_release: app.cadastrar_senha(campo_senha)
 
                 MDButtonText:
                     pos_hint: {"center_x": .5, "center_y": .5}
                     text: "LOGIN"
                     font_style: "Title"
-
-            MDButton:
-                pos_hint: {"top": 1, "center_x": 0.5}
-                style: "text"
-                on_release: app.mudar_tela("cadastroemail", "left")
-                MDButtonText:
-                    text: "Fazer Cadastro"
 
 
         MDLabel:

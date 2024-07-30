@@ -1,20 +1,24 @@
 #:include kv/login.kv
 #:include kv/homepage.kv
 #:include kv/sobrepalavra.kv
-#:include kv/cadastro.kv
+#:include kv/cadastroemail.kv
+#:include kv/cadastrosenha.kv
 #:include kv/basescreen.kv
 #:include kv/codigorecuperacao.kv
+#:include kv/codigoconfirmacao.kv
 
 MDScreenManager:
     id: screen_manager
 
-
+    CadastroEmail:
+        name: "cadastroemail"
+        id: cadastroemail
+    CadastroSenha:
+        name: "cadastrosenha"
+        id: cadastrosenha
     Login:
         name: "login"
         id: loginpage
-    Cadastro:
-        name: "cadastro"
-        id: cadastropage
     HomePage:
         name: "homepage"
         id: homepage

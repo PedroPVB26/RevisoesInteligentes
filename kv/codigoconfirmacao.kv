@@ -1,5 +1,5 @@
-<CodigoRecuperacao>:
-    name: "codigorecuperacao"
+<CodigoConfirmacao>
+    name: "codigoconfirmacao"
     MDBoxLayout:
         adaptive_height: True
         spacing: "20dp"
@@ -14,7 +14,7 @@
             size_hint: 1, 0.4
             font_style: "Headline"
             role: "small"
-            text: "Recuperação de senha"
+            text: "Confirmação de email"
             halign: "center"
             radius: 15
 
@@ -25,7 +25,7 @@
             spacing: "10dp"
 
             MDTextField:
-                id: campo_codigo_recuperacao
+                id: campo_codigo_confirmacao
                 halign: "left"
                 mode: "outlined"
                 multiline : False
@@ -35,7 +35,7 @@
                 font_size: "30sp"
 
                 MDTextFieldHintText:
-                    text: "Código de Recuperação"
+                    text: "Código de Confirmação"
 
                 MDTextFieldHelperText:
                     id: text_helper
@@ -60,7 +60,7 @@
                 height: "56dp"
                 width: "200dp"
 
-                on_release: app.verificar_codigo_recuperacao(campo_codigo_recuperacao.text)
+                on_release: app.verificar_codigo_confirmacao(campo_codigo_confirmacao.text)
 
                 MDButtonText:
                     pos_hint: {"center_x": .5, "center_y": .5}

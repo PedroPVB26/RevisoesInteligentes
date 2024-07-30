@@ -15,8 +15,14 @@ class Login(BaseScreen):
     pass
 
 
-class Cadastro(BaseScreen):
+class CadastroEmail(BaseScreen):
+    pass
+
+class CadastroSenha(BaseScreen):
     pass
 
 class CodigoRecuperacao(BaseScreen):
+    pass
+
+class CodigoConfirmacao(BaseScreen):
     pass
